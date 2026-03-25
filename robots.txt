@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /synapse-bridge/
+Sitemap: Synapse-Bridge.github.io/sitemap.xml
