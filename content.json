@@ -1,0 +1,129 @@
+{
+  "key_facts": {
+    "Category": "Cross-chain bridge",
+    "Network": "20+ EVM and non-EVM chains",
+    "Token": "USDC, ETH, nUSD, nETH and supported assets",
+    "Custody": "Bridge contracts",
+    "Explorer": "explorer.synapseprotocol.com"
+  },
+  "intent": [
+    {
+      "q": "Synapse Bridge supported networks and routes",
+      "a": "Synapse Bridge supports asset transfers across 20+ EVM and non-EVM blockchains according to the official bridge docs. Route availability is not universal for every token and chain pair; it depends on selected origin chain, destination chain, token, liquidity, and bridge function. The docs describe canonical routes, liquidity pool routes, and CCTP for native USDC routing where available. A user should treat the live app quote as the current source for what can be bridged right now. The search-intent answer is: Synapse is broad, but supported networks and assets are route-specific, so choose both chains and the token before assuming liquidity or final output."
+    },
+    {
+      "q": "Synapse Bridge fees speed and slippage",
+      "a": "Synapse Bridge fees and speed vary by route, asset, source chain, destination chain, and network conditions. A bridge quote can include source-chain gas, destination-chain effects, bridge or liquidity costs, and slippage if a liquidity pool route converts through nUSD or nETH. Some routes may be faster than others because canonical bridge mechanics, liquidity pool depth, or CCTP settlement differ. The practical action is to review the app quote, output amount, destination token, estimated time, and wallet prompt before signing. For high-value transfers, bridge a small test amount first and verify the destination wallet and chain."
+    },
+    {
+      "q": "Synapse Bridge USDC and CCTP routes",
+      "a": "Synapse Bridge docs list CCTP as a bridge function for native USDC routes. CCTP routes differ from liquidity-pool routes because they rely on Circle's cross-chain USDC burn-and-mint system where supported, while other Synapse routes can use canonical assets or liquidity pools. A user searching Synapse USDC bridge usually wants to know whether they will receive native USDC, a bridged representation, or a pool-routed asset. The live quote should answer that for the selected chain pair. Always check token symbol, contract, and destination chain because stablecoin names can look similar while representing different contracts or bridge origins."
+    },
+    {
+      "q": "Synapse Bridge transaction status and explorer",
+      "a": "Synapse provides an explorer for bridge, swap, and messaging activity. If a bridge looks stuck, first copy the source-chain transaction hash and search it in the Synapse Explorer or the origin chain's block explorer. Bridge status can be pending, confirmed, delayed, or affected by route-specific settlement conditions. Do not send another transaction just because a wallet balance has not updated immediately. Check whether the source transaction succeeded, whether the app shows a pending bridge, whether the destination token contract is visible in the wallet, and whether the destination chain requires adding the token manually."
+    },
+    {
+      "q": "Synapse Bridge vs Stargate and Across",
+      "a": "Synapse Bridge is often compared with Stargate and Across because all three are cross-chain transfer products, but their routing assumptions differ. Synapse supports canonical, liquidity pool, and CCTP route types, and its docs describe nUSD and nETH liquidity pools for some transfers. Stargate is strongly associated with LayerZero-based omnichain liquidity, while Across is widely known for optimistic, intent-style bridging. The best bridge depends on the specific asset, chain pair, output token, fee, speed, liquidity, and trust assumptions. Users should compare the live quote and destination asset rather than choosing a bridge based only on brand familiarity."
+    }
+  ],
+  "compare": {
+    "title": "Synapse Bridge vs other bridges",
+    "rows": [
+      [
+        "Dimension",
+        "Synapse Bridge",
+        "Alternative bridge"
+      ],
+      [
+        "Route types",
+        "Canonical, liquidity pool, and CCTP routes",
+        "May use canonical, intent, liquidity, or messaging routes"
+      ],
+      [
+        "Coverage",
+        "20+ EVM and non-EVM chains in docs",
+        "Coverage varies by product and token"
+      ],
+      [
+        "Status tooling",
+        "Synapse Explorer for transaction lookup",
+        "Explorer support varies by bridge"
+      ],
+      [
+        "Decision point",
+        "Output token, liquidity, cost, speed, chain pair",
+        "Same factors plus bridge-specific trust assumptions"
+      ]
+    ]
+  },
+  "faq": [
+    {
+      "q": "What is Synapse Bridge used for?",
+      "a": "Synapse Bridge is used to move supported assets between chains. Users choose an origin chain, destination chain, token, and amount, then receive a route quote to confirm from their wallet. It is a bridge and routing app, not a centralized exchange withdrawal page."
+    },
+    {
+      "q": "Which chains does Synapse Bridge support?",
+      "a": "The official docs describe support for 20+ EVM and non-EVM blockchains. Exact route availability depends on the token and chain pair selected in the live app, so users should not assume every asset is available between every two networks."
+    },
+    {
+      "q": "How long does a Synapse Bridge transfer take?",
+      "a": "Timing depends on the route type, chain congestion, confirmations, liquidity, and destination chain conditions. The app quote and status tools should be treated as the current source. For large transfers, a small test bridge can reduce operational risk."
+    },
+    {
+      "q": "Why did my Synapse Bridge output token look different?",
+      "a": "Bridge routes can involve canonical assets, liquidity pool conversions, or CCTP for supported USDC routes. The destination token can differ by chain and route, so always check the contract and token name shown in the quote before signing."
+    },
+    {
+      "q": "How do I track a Synapse Bridge transaction?",
+      "a": "Use the Synapse Explorer and the source-chain transaction hash. Confirm that the source transaction succeeded, then check the bridge status and destination chain. If the token does not appear in the wallet, add the verified destination token contract manually."
+    },
+    {
+      "q": "Is Synapse Bridge only for stablecoins?",
+      "a": "No. Synapse supports multiple bridge functions and assets, including routes involving stablecoins and ETH-like assets such as nUSD and nETH pools. The live app determines which assets are currently available for the chosen chain pair."
+    }
+  ],
+  "niche": {
+    "type": "bridge",
+    "asset": "USDC",
+    "receive": "USDC",
+    "supported_networks": [
+      "Ethereum",
+      "Arbitrum",
+      "Optimism",
+      "Avalanche",
+      "BNB Chain",
+      "Polygon",
+      "Base",
+      "Solana"
+    ]
+  },
+  "authority": [
+    {
+      "text": "Synapse Bridge docs",
+      "url": "https://docs.synapseprotocol.com/docs/Bridge/"
+    },
+    {
+      "text": "Synapse Bridge app",
+      "url": "https://bridge.synapseprotocol.com/"
+    },
+    {
+      "text": "Synapse Explorer",
+      "url": "https://explorer.synapseprotocol.com/"
+    },
+    {
+      "text": "Synapse GitHub monorepo",
+      "url": "https://github.com/synapsecns/sanguine"
+    },
+    {
+      "text": "Synapse on DeFiLlama",
+      "url": "https://defillama.com/protocol/synapse"
+    }
+  ],
+  "sameAs": [
+    "https://twitter.com/SynapseProtocol",
+    "https://github.com/synapsecns",
+    "https://defillama.com/protocol/synapse"
+  ]
+}
