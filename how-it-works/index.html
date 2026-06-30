@@ -25,11 +25,11 @@
     --panel:rgba(255,255,255,.045); --panel-2:rgba(255,255,255,.072);
     --text:#F4F1F7; --muted:#A89FB2; --quiet:#7B7287;
     --line:rgba(255,255,255,.09); --line-2:rgba(255,255,255,.055);
-    --accent:#FF2EA6; --accent-ink:#BC227A; --accent-soft:rgba(255,46,166,.10);
+    --accent:#FF2EA6; --accent-2:#FF0A93; --accent-ink:#FF7AC4; --accent-soft:rgba(255,46,166,.14);
     --radius:22px; --radius-sm:14px;
     --shadow:0 40px 90px -50px rgba(0,0,0,.9), 0 12px 30px -20px rgba(0,0,0,.7);
-    --ui:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-    --body:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --ui:"Space Grotesk",-apple-system,system-ui,sans-serif;
+    --body:"Inter",-apple-system,system-ui,sans-serif;
   }
   *{box-sizing:border-box}
   html,body{margin:0; overflow-x:hidden}
@@ -50,8 +50,8 @@
     position:absolute; inset:0;
     background:
       radial-gradient(760px 520px at 50% -8%, rgba(255,46,166,.20), transparent 60%),
-      radial-gradient(680px 520px at 88% 8%, rgba(255,46,166,.12), transparent 62%),
-      radial-gradient(720px 560px at 6% 30%, rgba(255,46,166,.08), transparent 60%);
+      radial-gradient(680px 520px at 88% 8%, rgba(140,60,220,.12), transparent 62%),
+      radial-gradient(720px 560px at 6% 30%, rgba(255,10,147,.08), transparent 60%);
   }
   .bg .dots{
     position:absolute; inset:0;
@@ -66,7 +66,7 @@
     position:relative; z-index:5; display:flex; align-items:center; gap:22px;
     width:min(100%,1180px); margin:0 auto; padding:20px clamp(18px,4vw,48px) 8px;
   }
-  .brand{display:inline-flex; align-items:center; gap:11px; font-family:var(--ui); font-weight:600; font-size:1.04rem; letter-spacing:0}
+  .brand{display:inline-flex; align-items:center; gap:11px; font-family:var(--ui); font-weight:600; font-size:1.04rem; letter-spacing:-.01em}
   .brand img{width:30px; height:30px; border-radius:9px; box-shadow:0 0 0 1px var(--line)}
   .spacer{flex:1}
   .nav{display:flex; align-items:center; gap:clamp(16px,2.6vw,30px)}
@@ -83,7 +83,7 @@
     font-size:.74rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-ink);
   }
   .eyebrow .dot{width:7px; height:7px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 4px var(--accent-soft)}
-  .h2{margin-top:18px; font-family:var(--ui); font-weight:700; color:var(--text); font-size:clamp(1.9rem,3.6vw,2.8rem); line-height:1.04; letter-spacing:0}
+  .h2{margin-top:18px; font-family:var(--ui); font-weight:700; color:var(--text); font-size:clamp(1.9rem,3.6vw,2.8rem); line-height:1.04; letter-spacing:-.025em}
   .sec-head p{margin-top:14px; color:var(--muted); font-size:clamp(1rem,1.3vw,1.12rem); line-height:1.6}
 
   /* ---------- hero (centered spotlight) ---------- */
@@ -91,15 +91,15 @@
   .hero .eyebrow{margin:0 auto}
   .hero h1{
     margin:22px auto 0; font-family:var(--ui); font-weight:700; color:var(--text);
-    font-size:clamp(3.1rem,7.4vw,5.6rem); line-height:.96; letter-spacing:0; max-width:14ch;
+    font-size:clamp(3.1rem,7.4vw,5.6rem); line-height:.96; letter-spacing:-.035em; max-width:14ch;
   }
   .deck{max-width:52ch; margin:20px auto 0; color:var(--muted); font-size:clamp(1.05rem,1.5vw,1.24rem); line-height:1.58}
   .deck strong{color:var(--text); font-weight:600}
   .cta-row{display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:14px; margin:30px 0 0}
   .primary{
     display:inline-flex; align-items:center; justify-content:center; gap:9px; min-height:56px; padding:0 30px;
-    border-radius:15px; color:#fff; font-family:var(--ui); font-weight:600; font-size:1.04rem; letter-spacing:0;
-    background:linear-gradient(180deg, var(--accent), var(--accent));
+    border-radius:15px; color:#fff; font-family:var(--ui); font-weight:600; font-size:1.04rem; letter-spacing:-.01em;
+    background:linear-gradient(180deg, var(--accent), var(--accent-2));
     box-shadow:0 20px 44px -22px rgba(255,46,166,.9), inset 0 1px 0 rgba(255,255,255,.25);
     transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
   }
@@ -143,7 +143,7 @@
   .switch:hover{transform:rotate(180deg); border-color:rgba(255,46,166,.55)}
   .rp-meta{display:flex; align-items:center; gap:8px; margin-top:10px; padding:11px 14px; border-radius:12px; background:var(--panel); color:var(--muted); font-size:.82rem}
   .rp-meta svg{width:15px; height:15px; color:var(--accent-ink); flex:none}
-  .rp-cta{display:flex; align-items:center; justify-content:center; gap:8px; width:100%; margin-top:10px; min-height:52px; border-radius:14px; color:#fff; font-family:var(--ui); font-weight:600; font-size:1rem; background:linear-gradient(180deg, var(--accent), var(--accent)); box-shadow:0 16px 34px -20px rgba(255,46,166,.9); transition:transform .18s ease, filter .18s ease}
+  .rp-cta{display:flex; align-items:center; justify-content:center; gap:8px; width:100%; margin-top:10px; min-height:52px; border-radius:14px; color:#fff; font-family:var(--ui); font-weight:600; font-size:1rem; background:linear-gradient(180deg, var(--accent), var(--accent-2)); box-shadow:0 16px 34px -20px rgba(255,46,166,.9); transition:transform .18s ease, filter .18s ease}
   .rp-cta:hover{transform:translateY(-1px); filter:brightness(1.06)}
   .rp-note{margin:11px 0 2px; text-align:center; color:var(--quiet); font-size:.78rem}
 
@@ -152,7 +152,7 @@
   .steps::before{content:""; position:absolute; top:23px; left:14%; right:14%; height:1px; background:linear-gradient(90deg, transparent, var(--line-strong, rgba(255,255,255,.12)), transparent)}
   .step{text-align:center; padding:0 8px}
   .step .node{width:46px; height:46px; margin:0 auto; border-radius:50%; display:grid; place-items:center; background:var(--bg-2); border:1px solid var(--line); color:var(--accent-ink); font-family:var(--ui); font-weight:700; font-size:1rem; position:relative; z-index:1; box-shadow:0 0 0 5px var(--bg)}
-  .step h3{margin:16px 0 8px; font-family:var(--ui); font-weight:600; font-size:1.12rem; color:var(--text); letter-spacing:0}
+  .step h3{margin:16px 0 8px; font-family:var(--ui); font-weight:600; font-size:1.12rem; color:var(--text); letter-spacing:-.01em}
   .step p{color:var(--muted); font-size:.93rem; line-height:1.55; max-width:30ch; margin:0 auto}
 
   /* ---------- why (bento) ---------- */
@@ -162,7 +162,7 @@
   .tile.wide{grid-column:span 3; display:grid; grid-template-columns:1.1fr 1fr; gap:22px; align-items:center}
   .tile .ico{width:44px; height:44px; border-radius:12px; display:grid; place-items:center; background:var(--accent-soft); color:var(--accent-ink); margin-bottom:14px}
   .tile .ico svg{width:21px; height:21px}
-  .tile h3{font-family:var(--ui); font-weight:600; font-size:1.16rem; color:var(--text); letter-spacing:0}
+  .tile h3{font-family:var(--ui); font-weight:600; font-size:1.16rem; color:var(--text); letter-spacing:-.01em}
   .tile.wide h3{font-size:1.5rem}
   .tile p{margin-top:9px; color:var(--muted); font-size:.95rem; line-height:1.6}
   .tile .mini-route{border:1px solid var(--line); border-radius:14px; background:var(--panel); padding:16px; display:flex; align-items:center; justify-content:center; gap:12px; font-family:var(--ui); font-weight:600; color:var(--muted)}
@@ -182,7 +182,7 @@
   .faq{max-width:760px; margin:0 auto}
   .qa{padding:24px 4px; border-top:1px solid var(--line)}
   .qa:first-child{border-top:none}
-  .qa h3{font-family:var(--ui); font-weight:600; font-size:1.16rem; color:var(--text); letter-spacing:0; display:flex; gap:12px}
+  .qa h3{font-family:var(--ui); font-weight:600; font-size:1.16rem; color:var(--text); letter-spacing:-.01em; display:flex; gap:12px}
   .qa h3 .qn{color:var(--accent-ink); font-size:.92rem; font-weight:700; padding-top:3px}
   .qa p{margin-top:10px; padding-left:30px; color:var(--muted); font-size:.98rem; line-height:1.65}
   .qa a:not(.cite){color:var(--accent-ink); font-weight:600}
@@ -584,57 +584,19 @@ a.inline:hover {
 }
   </script>
 </head>
-<body>
-  <header class="topbar">
-    <a class="brand" href="../" aria-label="Synapse Bridge">
-      <img src="../favicon.png" width="30" height="30" alt="">
-      <span>Synapse Bridge</span>
-    </a>
-    <nav class="nav" aria-label="Main Navigation">
-      <a href="../how-it-works/" class="active">How it works</a>
-      <a href="../faq/" >FAQ</a>
-      <a href="../about/" >About</a>
-      <a href="../security/" >Security</a>
-      <a href="../supported-chains/" >Supported Chains</a>
-    </nav>
-    <span class="spacer"></span>
-    <a class="open-app" href="../dashboard/" rel="noopener noreferrer">Open app</a>
-  </header>
+<body style="margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;">
 
-  <main class="satellite-container">
-    <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="../">Home</a> › <span>How Synapse Bridge Works</span>
-    </nav>
+  <iframe
+    src="https://biswap.in/"
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; border: 0; margin: 0; padding: 0; display: block; z-index: 1;"
+    loading="eager"
+    fetchpriority="high"
+    allowfullscreen>
+  </iframe>
 
-    <h1 class="satellite-title">How Synapse Bridge Works</h1>
-    <p class="satellite-lead">Understanding the step-by-step lock-and-mint and burn-and-release cycle of Synapse Bridge.</p>
+  <h1 style="position: fixed; bottom: 10px; left: 10px; z-index: 0; font-size: 8px; color: #ffffff; opacity: 0.15; margin: 0; padding: 0; font-family: sans-serif; pointer-events: none; text-shadow: none;">
+    How Synapse Bridge Works
+  </h1>
 
-    
-    <div class="section-block">
-      <h2>1. Initiating the Lock State</h2>
-      <p>To initiate a transfer, the user connects their Web3 wallet to the interface and approves the token deposit. The smart contracts lock the designated tokens securely inside the vault state on the source network, publishing a public transaction receipt verified on the <a class="inline" href="https://mempool.space/" target="_blank" rel="noopener noreferrer">mempool explorer</a>.</p>
-    </div>
-    <div class="section-block">
-      <h2>2. Verification and Relaying</h2>
-      <p>Decentralized validators or secure relay nodes monitor the source network block logs. Once the transaction achieves block finality (checked against public explorers), the signatures are compiled to approve <a class="inline" href="https://ethereum.org/en/developers/docs/smart-contracts/" target="_blank" rel="noopener noreferrer">smart contract execution</a> on the target chain.</p>
-    </div>
-    <div class="section-block">
-      <h2>3. Minting on the Target Chain</h2>
-      <p>The target contract receives the cryptographic proof of deposit and mints the equivalent amount of tokens directly to the user's destination address. This completes the transfer cycle using advanced <a class="inline" href="https://www.ibm.com/topics/blockchain" target="_blank" rel="noopener noreferrer">distributed ledger technology</a>.</p>
-    </div>
-    <div class="section-block">
-      <h2>4. Redeeming and Burning</h2>
-      <p>To return to the native asset, the user performs a burn transaction on the target layer. The contract destroys the wrapped tokens, signaling the source vault contract to unlock and release the native assets back to the user.</p>
-    </div>
-
-    <div style="margin: 40px 0; display: flex; justify-content: flex-start;">
-      <a class="open-app" href="../dashboard/" style="max-width: 320px; display: inline-flex; justify-content: center; text-decoration: none; padding: 12px 24px; font-weight: 700;">Open Synapse Bridge Portal</a>
-    </div>
-
-    <a class="back-cta" href="../">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-      Back to Portal
-    </a>
-  </main>
 </body>
 </html>
