@@ -3,128 +3,462 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Synapse Bridge</title>
-  <meta name="description" content="Synapse Bridge moves assets across chains from your own wallet through Synapse Protocol.">
+  <title>Synapse Bridge - Move Crypto Across Chains</title>
+  <meta name="description" content="Synapse Bridge helps you move crypto across chains from a non-custodial DeFi app. Check the route, cost and timing before you sign.">
+  <meta name="theme-color" content="#0A0710">
   <link rel="canonical" href="https://synapse-bridge-site.github.io/">
-  <meta name="robots" content="index,follow,max-image-preview:large">
-  <meta name="theme-color" content="#09060F">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Synapse Bridge">
-  <meta property="og:description" content="Synapse Bridge moves assets across chains from your own wallet through Synapse Protocol.">
-  <meta property="og:url" content="https://synapse-bridge-site.github.io/">
-  <meta property="og:image" content="https://synapse-bridge-site.github.io/favicon.png">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Synapse Bridge">
-  <meta name="twitter:description" content="Synapse Bridge moves assets across chains from your own wallet through Synapse Protocol.">
+  <meta name="robots" content="index,follow">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
   <link rel="manifest" href="site.webmanifest">
-  <link rel="stylesheet" href="style.css">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "@id": "https://synapse-bridge-site.github.io/#website",
-        "url": "https://synapse-bridge-site.github.io/",
-        "name": "Synapse Bridge",
-        "inLanguage": "en"
-      },
-      {
-        "@type": "Organization",
-        "@id": "https://synapse-bridge-site.github.io/#organization",
-        "name": "Synapse Protocol",
-        "url": "https://www.synapseprotocol.com/",
-        "logo": "https://synapse-bridge-site.github.io/favicon.png",
-        "sameAs": [
-          "https://www.synapseprotocol.com/",
-          "https://docs.synapseprotocol.com/",
-          "https://github.com/synapsecns",
-          "https://twitter.com/SynapseProtocol"
-        ]
-      },
-      {
-        "@type": "WebApplication",
-        "@id": "https://synapse-bridge-site.github.io/#app",
-        "name": "Synapse Bridge",
-        "applicationCategory": "FinanceApplication",
-        "operatingSystem": "Web",
-        "url": "https://synapse-bridge-site.github.io/",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD"
-        }
-      }
-    ]
-  }
-  </script>
-
   <link rel="prefetch" href="dashboard/">
-  <link rel="prerender" href="dashboard/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Synapse Bridge - Move Crypto Across Chains">
+  <meta property="og:description" content="Bridge assets from a wallet-native DeFi app. Review route, time and cost in the app before you confirm.">
+  <meta property="og:image" content="https://synapse-bridge-site.github.io/og-cover.png">
+  <meta property="og:url" content="https://synapse-bridge-site.github.io/">
+  <style>
+  :root{
+    --bg:#0A0710; --bg-2:#0E0A16;
+    --panel:rgba(255,255,255,.045); --panel-2:rgba(255,255,255,.072);
+    --text:#F4F1F7; --muted:#A89FB2; --quiet:#7B7287;
+    --line:rgba(255,255,255,.09); --line-2:rgba(255,255,255,.055);
+    --accent:#FF2EA6; --accent-ink:#BC227A; --accent-soft:rgba(255,46,166,.10);
+    --radius:22px; --radius-sm:14px;
+    --shadow:0 40px 90px -50px rgba(0,0,0,.9), 0 12px 30px -20px rgba(0,0,0,.7);
+    --ui:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --body:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0; overflow-x:hidden}
+  body{
+    background:var(--bg); color:var(--text); font-family:var(--body); line-height:1.55;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; position:relative;
+  }
+  a{color:inherit; text-decoration:none}
+  a.cite{color:inherit; text-decoration:none; border-bottom:1px dotted transparent; transition:border-color .15s ease}
+  a.cite:hover{border-bottom-color:var(--quiet)}
+  img{display:block; max-width:100%}
+  button{font:inherit; cursor:pointer; border:none; background:none; color:inherit}
+  h1,h2,h3,p{margin:0}
+
+  /* ---------- aurora texture ---------- */
+  .bg{position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden}
+  .bg .glow{
+    position:absolute; inset:0;
+    background:
+      radial-gradient(760px 520px at 50% -8%, rgba(255,46,166,.20), transparent 60%),
+      radial-gradient(680px 520px at 88% 8%, rgba(255,46,166,.12), transparent 62%),
+      radial-gradient(720px 560px at 6% 30%, rgba(255,46,166,.08), transparent 60%);
+  }
+  .bg .dots{
+    position:absolute; inset:0;
+    background-image:radial-gradient(rgba(255,255,255,.07) 1px, transparent 1.4px);
+    background-size:24px 24px;
+    -webkit-mask-image:radial-gradient(130% 90% at 50% 6%, #000 42%, transparent 86%);
+            mask-image:radial-gradient(130% 90% at 50% 6%, #000 42%, transparent 86%);
+  }
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    position:relative; z-index:5; display:flex; align-items:center; gap:22px;
+    width:min(100%,1180px); margin:0 auto; padding:20px clamp(18px,4vw,48px) 8px;
+  }
+  .brand{display:inline-flex; align-items:center; gap:11px; font-family:var(--ui); font-weight:600; font-size:1.04rem; letter-spacing:0}
+  .brand img{width:30px; height:30px; border-radius:9px; box-shadow:0 0 0 1px var(--line)}
+  .spacer{flex:1}
+  .nav{display:flex; align-items:center; gap:clamp(16px,2.6vw,30px)}
+  .nav a{font-family:var(--ui); font-weight:500; font-size:.92rem; color:var(--muted); transition:color .16s ease}
+  .nav a:hover{color:var(--text)}
+
+  /* ---------- shared section frame ---------- */
+  .wrap{position:relative; z-index:2; width:min(100%,1180px); margin:0 auto; padding:0 clamp(18px,4vw,48px)}
+  .sec{padding-top:clamp(50px,7.5vh,96px); padding-bottom:clamp(50px,7.5vh,96px)}
+  .sec-head{text-align:center; max-width:60ch; margin:0 auto clamp(28px,4vh,44px)}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:9px; padding:7px 14px; border:1px solid var(--line);
+    border-radius:999px; background:var(--panel); font-family:var(--ui); font-weight:600;
+    font-size:.74rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-ink);
+  }
+  .eyebrow .dot{width:7px; height:7px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 4px var(--accent-soft)}
+  .h2{margin-top:18px; font-family:var(--ui); font-weight:700; color:var(--text); font-size:clamp(1.9rem,3.6vw,2.8rem); line-height:1.04; letter-spacing:0}
+  .sec-head p{margin-top:14px; color:var(--muted); font-size:clamp(1rem,1.3vw,1.12rem); line-height:1.6}
+
+  /* ---------- hero (centered spotlight) ---------- */
+  .hero{text-align:center; padding-top:clamp(26px,5vh,64px); padding-bottom:clamp(20px,3vh,40px)}
+  .hero .eyebrow{margin:0 auto}
+  .hero h1{
+    margin:22px auto 0; font-family:var(--ui); font-weight:700; color:var(--text);
+    font-size:clamp(3.1rem,7.4vw,5.6rem); line-height:.96; letter-spacing:0; max-width:14ch;
+  }
+  .deck{max-width:52ch; margin:20px auto 0; color:var(--muted); font-size:clamp(1.05rem,1.5vw,1.24rem); line-height:1.58}
+  .deck strong{color:var(--text); font-weight:600}
+  .cta-row{display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:14px; margin:30px 0 0}
+  .primary{
+    display:inline-flex; align-items:center; justify-content:center; gap:9px; min-height:56px; padding:0 30px;
+    border-radius:15px; color:#fff; font-family:var(--ui); font-weight:600; font-size:1.04rem; letter-spacing:0;
+    background:linear-gradient(180deg, var(--accent), var(--accent));
+    box-shadow:0 20px 44px -22px rgba(255,46,166,.9), inset 0 1px 0 rgba(255,255,255,.25);
+    transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
+  }
+  .primary:hover{transform:translateY(-1px); filter:brightness(1.06); box-shadow:0 26px 52px -22px rgba(255,46,166,1)}
+  .primary svg{width:17px; height:17px}
+  .ghost{
+    display:inline-flex; align-items:center; gap:8px; min-height:56px; padding:0 22px; border-radius:15px;
+    border:1px solid var(--line); background:var(--panel); color:var(--text);
+    font-family:var(--ui); font-weight:600; font-size:1rem; transition:border-color .16s ease, background .16s ease, transform .16s ease;
+  }
+  .ghost:hover{border-color:rgba(255,46,166,.5); background:var(--panel-2); transform:translateY(-1px)}
+  .ghost svg{width:15px; height:15px; color:var(--accent-ink)}
+  .chips{list-style:none; margin:26px 0 0; padding:0; display:flex; flex-wrap:wrap; justify-content:center; gap:9px}
+  .chips li{display:inline-flex; align-items:center; gap:8px; padding:8px 15px; border:1px solid var(--line); border-radius:999px; background:var(--panel); font-family:var(--ui); font-weight:500; font-size:.86rem; color:var(--muted)}
+  .chips li::before{content:""; width:6px; height:6px; border-radius:50%; background:var(--accent)}
+
+  /* ---------- horizontal route panel ---------- */
+  .route-panel{
+    width:min(100%,720px); margin:clamp(34px,5vh,52px) auto 0; padding:18px;
+    border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow);
+    background:linear-gradient(180deg, var(--panel-2), var(--panel)); backdrop-filter:blur(16px); text-align:left;
+  }
+  .rp-head{display:flex; align-items:center; justify-content:space-between; padding:2px 6px 14px}
+  .rp-head .ct{font-family:var(--ui); font-weight:600; font-size:1.04rem}
+  .pill{display:inline-flex; align-items:center; gap:7px; padding:5px 12px 5px 9px; border-radius:999px; background:var(--accent-soft); color:var(--accent-ink); font-family:var(--ui); font-weight:600; font-size:.74rem}
+  .pill .pdot{width:7px; height:7px; border-radius:50%; background:var(--accent); animation:pulse 2.4s ease-out infinite}
+  .route{display:grid; grid-template-columns:minmax(0,1fr) 50px minmax(0,1fr); align-items:center; gap:12px}
+  .leg{min-width:0; padding:15px 16px; border:1px solid var(--line); border-radius:var(--radius-sm); background:var(--panel)}
+  .leg .label{display:block; color:var(--quiet); font-size:.72rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase}
+  .leg .chiprow{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:12px}
+  .tok{display:inline-flex; align-items:center; gap:9px; font-family:var(--ui); font-weight:600; font-size:1.06rem; color:var(--text)}
+  .tok img{width:26px; height:26px; border-radius:50%; box-shadow:0 0 0 1px var(--line)}
+  .tok .cv{color:var(--quiet); font-size:.8em}
+  .ghostval{color:var(--quiet); font-size:.82rem}
+  .switch{
+    width:46px; height:46px; justify-self:center; border-radius:50%; border:1px solid var(--line);
+    background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02)), #0F0A19;
+    color:var(--accent-ink); display:grid; place-items:center; transition:transform .25s ease, border-color .2s ease;
+  }
+  .switch svg{width:18px; height:18px}
+  .switch:hover{transform:rotate(180deg); border-color:rgba(255,46,166,.55)}
+  .rp-meta{display:flex; align-items:center; gap:8px; margin-top:10px; padding:11px 14px; border-radius:12px; background:var(--panel); color:var(--muted); font-size:.82rem}
+  .rp-meta svg{width:15px; height:15px; color:var(--accent-ink); flex:none}
+  .rp-cta{display:flex; align-items:center; justify-content:center; gap:8px; width:100%; margin-top:10px; min-height:52px; border-radius:14px; color:#fff; font-family:var(--ui); font-weight:600; font-size:1rem; background:linear-gradient(180deg, var(--accent), var(--accent)); box-shadow:0 16px 34px -20px rgba(255,46,166,.9); transition:transform .18s ease, filter .18s ease}
+  .rp-cta:hover{transform:translateY(-1px); filter:brightness(1.06)}
+  .rp-note{margin:11px 0 2px; text-align:center; color:var(--quiet); font-size:.78rem}
+
+  /* ---------- how it works (horizontal connector) ---------- */
+  .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; position:relative}
+  .steps::before{content:""; position:absolute; top:23px; left:14%; right:14%; height:1px; background:linear-gradient(90deg, transparent, var(--line-strong, rgba(255,255,255,.12)), transparent)}
+  .step{text-align:center; padding:0 8px}
+  .step .node{width:46px; height:46px; margin:0 auto; border-radius:50%; display:grid; place-items:center; background:var(--bg-2); border:1px solid var(--line); color:var(--accent-ink); font-family:var(--ui); font-weight:700; font-size:1rem; position:relative; z-index:1; box-shadow:0 0 0 5px var(--bg)}
+  .step h3{margin:16px 0 8px; font-family:var(--ui); font-weight:600; font-size:1.12rem; color:var(--text); letter-spacing:0}
+  .step p{color:var(--muted); font-size:.93rem; line-height:1.55; max-width:30ch; margin:0 auto}
+
+  /* ---------- why (bento) ---------- */
+  .bento{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+  .tile{padding:24px 22px; border:1px solid var(--line); border-radius:18px; background:linear-gradient(180deg, var(--panel-2), var(--panel)); position:relative; overflow:hidden}
+  .tile::before{content:""; position:absolute; inset:0 0 auto; height:1px; background:linear-gradient(90deg, transparent, rgba(255,46,166,.5), transparent)}
+  .tile.wide{grid-column:span 3; display:grid; grid-template-columns:1.1fr 1fr; gap:22px; align-items:center}
+  .tile .ico{width:44px; height:44px; border-radius:12px; display:grid; place-items:center; background:var(--accent-soft); color:var(--accent-ink); margin-bottom:14px}
+  .tile .ico svg{width:21px; height:21px}
+  .tile h3{font-family:var(--ui); font-weight:600; font-size:1.16rem; color:var(--text); letter-spacing:0}
+  .tile.wide h3{font-size:1.5rem}
+  .tile p{margin-top:9px; color:var(--muted); font-size:.95rem; line-height:1.6}
+  .tile .mini-route{border:1px solid var(--line); border-radius:14px; background:var(--panel); padding:16px; display:flex; align-items:center; justify-content:center; gap:12px; font-family:var(--ui); font-weight:600; color:var(--muted)}
+  .tile .mini-route img{width:30px; height:30px; border-radius:50%; box-shadow:0 0 0 1px var(--line)}
+  .tile .mini-route .arr{color:var(--accent-ink)}
+
+  /* ---------- networks ---------- */
+  .nets{display:flex; flex-wrap:wrap; justify-content:center; gap:10px; max-width:760px; margin:0 auto}
+  .net{display:inline-flex; align-items:center; gap:9px; padding:11px 18px; border:1px solid var(--line); border-radius:999px; background:var(--panel); font-family:var(--ui); font-weight:600; font-size:.94rem; color:var(--text)}
+  .net .nd{width:9px; height:9px; border-radius:50%; background:var(--accent)}
+  .nets-foot{text-align:center; margin-top:22px}
+  .nets-foot a{display:inline-flex; align-items:center; gap:7px; color:var(--accent-ink); font-family:var(--ui); font-weight:600; font-size:.96rem}
+  .nets-foot a:hover{text-decoration:underline}
+  .nets-foot svg{width:15px; height:15px}
+
+  /* ---------- FAQ (centered single column) ---------- */
+  .faq{max-width:760px; margin:0 auto}
+  .qa{padding:24px 4px; border-top:1px solid var(--line)}
+  .qa:first-child{border-top:none}
+  .qa h3{font-family:var(--ui); font-weight:600; font-size:1.16rem; color:var(--text); letter-spacing:0; display:flex; gap:12px}
+  .qa h3 .qn{color:var(--accent-ink); font-size:.92rem; font-weight:700; padding-top:3px}
+  .qa p{margin-top:10px; padding-left:30px; color:var(--muted); font-size:.98rem; line-height:1.65}
+  .qa a:not(.cite){color:var(--accent-ink); font-weight:600}
+
+  /* ---------- explore ---------- */
+  .explore{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+  .ex{display:flex; flex-direction:column; gap:7px; padding:22px; border:1px solid var(--line); border-radius:16px; background:var(--panel); transition:transform .16s ease, border-color .16s ease, background .16s ease}
+  .ex:hover{transform:translateY(-2px); border-color:rgba(255,46,166,.45); background:var(--panel-2)}
+  .ex .et{display:flex; align-items:center; justify-content:space-between; gap:10px; font-family:var(--ui); font-weight:600; font-size:1.05rem; color:var(--text)}
+  .ex .et svg{width:16px; height:16px; color:var(--accent-ink); flex:none}
+  .ex p{color:var(--muted); font-size:.9rem; line-height:1.5}
+
+  /* ---------- footer ---------- */
+  .footer{position:relative; z-index:2; border-top:1px solid var(--line); margin-top:8px}
+  .footer .wrap{padding-top:28px; padding-bottom:36px; text-align:center; color:var(--quiet); font-size:.84rem}
+  .footer b{color:var(--muted); font-weight:600}
+
+  @keyframes pulse{0%{box-shadow:0 0 0 0 var(--accent-soft)} 70%{box-shadow:0 0 0 8px rgba(255,46,166,0)} 100%{box-shadow:0 0 0 0 rgba(255,46,166,0)}}
+
+  @media (max-width:900px){
+    .nav{display:none}
+    .steps{grid-template-columns:1fr; gap:26px}
+    .steps::before{display:none}
+    .bento{grid-template-columns:1fr}
+    .tile.wide{grid-column:span 1; grid-template-columns:1fr}
+    .explore{grid-template-columns:1fr}
+  }
+  @media (max-width:560px){
+    .route{grid-template-columns:1fr; gap:9px}
+    .switch{transform:rotate(90deg)}
+    .switch:hover{transform:rotate(270deg)}
+    .cta-row .primary,.cta-row .ghost{width:100%}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important; transition-duration:.01ms!important}}
+  </style>
 </head>
 <body>
+  <div class="bg" aria-hidden="true"><div class="glow"></div><div class="dots"></div></div>
+
   <header class="topbar">
-    <div class="brand" aria-label="Synapse Protocol">
+    <a class="brand" href="./">
       <img src="favicon.png" width="30" height="30" alt="">
-      <span>Synapse Protocol</span>
-    </div>
-    <nav class="nav" aria-label="Trusted references">
-      <a href="https://etherscan.io/" target="_blank" rel="nofollow noopener noreferrer">Etherscan</a>
-      <a href="https://ethereum.org/bridges/" target="_blank" rel="nofollow noopener noreferrer">Ethereum Bridges</a>
-      <a href="https://docs.synapseprotocol.com/" target="_blank" rel="nofollow noopener noreferrer">Synapse Docs</a>
-    </nav>
+      <span>Synapse Bridge</span>
+    </a>
     <span class="spacer"></span>
-    <a class="ghost" href="dashboard/" rel="noopener noreferrer">Open app</a>
+    <nav class="nav" aria-label="Main Navigation">
+      <a href="how-it-works/">How it works</a>
+      <a href="faq/">FAQ</a>
+      <a href="about/">About</a>
+      <a href="security/">Security</a>
+      <a href="supported-chains/">Supported Chains</a>
+    </nav>
   </header>
 
-  <main class="stage">
-    <section class="hero" aria-labelledby="page-title">
-      <h1 id="page-title">Synapse Bridge</h1>
-      <p class="value"><strong>Synapse Bridge</strong> moves assets across chains from your own wallet through Synapse Protocol.</p>
+  <main>
+    <section class="wrap hero">
+      <span class="eyebrow"><span class="dot"></span>Cross-Chain Swap Bridge</span>
+      <h1>Synapse Bridge</h1>
+      <p class="deck">Synapse Bridge is a <a class="cite" href="https://synapseprotocol.com/" rel="nofollow noopener noreferrer">cross-chain liquidity protocol</a> for moving assets between networks without handing funds to a custodian. Pick the chain, choose the asset, review the route and sign from your own wallet.</p>
+      <div class="cta-row">
+        <a class="primary" href="dashboard/">
+          Open App
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="ghost" href="dashboard/">
+          Preview Route
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <ul class="chips">
+        <li>Non-custodial</li>
+        <li>Bridge and swap</li>
+        <li>Wallet-native</li>
+        <li>Route preview</li>
+      </ul>
+
+      <section class="route-panel" aria-label="Bridge preview">
+        <div class="rp-head">
+          <span class="ct">Bridge</span>
+          <span class="pill"><span class="pdot"></span>Preview</span>
+        </div>
+        <div class="route">
+          <div class="leg">
+            <span class="label">From</span>
+            <div class="chiprow">
+              <button class="tok" type="button"><img src="eth.png" alt="ETH">ETH <span class="cv" aria-hidden="true">&#9662;</span></button>
+              <span class="ghostval">Amount in app</span>
+            </div>
+          </div>
+          <button class="switch" type="button" data-switch aria-label="Switch direction">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4v13M4 14l3 3 3-3M17 20V7M14 10l3-3 3 3"/></svg>
+          </button>
+          <div class="leg">
+            <span class="label">To</span>
+            <div class="chiprow">
+              <button class="tok" type="button"><img src="usdc.png" alt="USDC">USDC <span class="cv" aria-hidden="true">&#9662;</span></button>
+              <span class="ghostval">Live quote in app</span>
+            </div>
+          </div>
+        </div>
+        <div class="rp-meta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 5v5l3 3"/></svg>
+          Route, time and network cost are quoted live before you sign.
+        </div>
+        <a class="rp-cta" href="dashboard/">Open App</a>
+        <p class="rp-note">Preview only &middot; non-custodial &middot; connect your wallet in the app</p>
+      </section>
     </section>
 
-    <section class="app-card" aria-label="Bridge preview">
-      <div class="route">
-        <div class="leg">
-          <span class="label">From</span>
-          <span class="chip">
-            <img src="eth.png" width="28" height="28" alt="ETH">
-            <span>ETH</span>
-          </span>
+    <section class="wrap sec" id="how">
+      <div class="sec-head">
+        <span class="eyebrow"><span class="dot"></span>How it works</span>
+        <h2 class="h2">How Synapse Bridge moves a swap across chains</h2>
+        <p>Synapse Bridge keeps the flow direct: your wallet starts the transfer, the app shows the live route, and your confirmation sends the transaction on-chain.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="node">1</div>
+          <h3>Connect your wallet</h3>
+          <p>Open the app with a <a class="cite" href="https://ethereum.org/en/wallets/" rel="nofollow noopener noreferrer">self-custody wallet</a>. You stay in control of approvals and signatures from the first step.</p>
         </div>
-        <button class="switch" type="button" data-switch aria-label="Switch bridge direction">
-          <span aria-hidden="true">&rarr;</span>
-        </button>
-        <div class="leg">
-          <span class="label">To</span>
-          <span class="chip">
-            <img src="usdc.png" width="28" height="28" alt="USDC">
-            <span>USDC</span>
-          </span>
+        <div class="step">
+          <div class="node">2</div>
+          <h3>Choose route and asset</h3>
+          <p>Select the source chain, destination chain and supported asset. Use ETH, USDC or another listed token when that route is available in the app.</p>
+        </div>
+        <div class="step">
+          <div class="node">3</div>
+          <h3>Review and confirm</h3>
+          <p>Check the quoted output, timing, route and network cost, then sign only if the transaction matches what you want to do.</p>
         </div>
       </div>
-      <a class="primary" href="dashboard/" rel="noopener noreferrer">Enter App</a>
-      <p class="note">Preview only</p>
+    </section>
+
+    <!-- WHY (bento) -->
+    <section class="wrap sec" id="why">
+      <div class="sec-head">
+        <span class="eyebrow"><span class="dot"></span>Why Synapse Bridge</span>
+        <h2 class="h2">A sharper way to bridge without leaving self-custody</h2>
+      </div>
+      <div class="bento">
+        <div class="tile wide">
+          <div>
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span>
+            <h3>Bridge from your wallet, not an account</h3>
+            <p>Synapse Bridge is built for users who want cross-chain access without creating an exchange account. Keep custody in a wallet such as <a class="cite" href="https://metamask.io/" rel="nofollow noopener noreferrer">MetaMask</a>, review each approval and sign the final transfer yourself.</p>
+          </div>
+          <div class="mini-route">
+            <img src="eth.png" alt="ETH"><span class="arr">-&gt;</span><img src="usdc.png" alt="USDC">
+          </div>
+        </div>
+        <div class="tile">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+          <h3>Useful chain coverage</h3>
+          <p>Move between Ethereum and popular EVM ecosystems from one interface, with supported routes and assets shown in the live app.</p>
+        </div>
+        <div class="tile">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9 9 0 0 1 9 9 9 9 0 0 1-9 9"/><path d="M3 12h6l2-3 2 6 2-3h2"/></svg></span>
+          <h3>Live costs before action</h3>
+          <p>Bridge pricing depends on liquidity, route design and gas. The app gives you the current quote before you confirm.</p>
+        </div>
+        <div class="tile">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9M21 3l-9 9-3-3"/></svg></span>
+          <h3>Clear confirmation flow</h3>
+          <p>See what you are sending, where it is going and what the wallet asks you to approve before funds move.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap sec" id="networks">
+      <div class="sec-head">
+        <span class="eyebrow"><span class="dot"></span>Chains and assets</span>
+        <h2 class="h2">Supported routes show live in the app</h2>
+        <p>Synapse Bridge is designed for cross-chain DeFi users moving between Ethereum, L2 networks and other EVM chains tracked across the broader <a class="cite" href="https://defillama.com/bridges" rel="nofollow noopener noreferrer">bridge market</a>. Assets such as ETH and USDC appear when the selected route supports them.</p>
+      </div>
+      <div class="nets">
+        <span class="net"><span class="nd"></span>Ethereum</span>
+        <span class="net"><span class="nd"></span>Arbitrum</span>
+        <span class="net"><span class="nd"></span>Optimism</span>
+        <span class="net"><span class="nd"></span>Base</span>
+        <span class="net"><span class="nd"></span>Polygon</span>
+        <span class="net"><span class="nd"></span>Avalanche</span>
+        <span class="net"><span class="nd"></span>BNB Chain</span>
+      </div>
+      <div class="nets-foot">
+        <a href="supported-chains/">See all supported chains
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <section class="wrap sec" id="faq">
+      <div class="sec-head">
+        <span class="eyebrow"><span class="dot"></span>FAQ</span>
+        <h2 class="h2">Synapse Bridge questions</h2>
+      </div>
+      <div class="faq">
+        <div class="qa">
+          <h3><span class="qn">01</span>What is Synapse Bridge?</h3>
+          <p>Synapse Bridge is a non-custodial DeFi bridge and swap app for moving supported assets across chains. You connect a wallet, choose a route and sign the transfer yourself.</p>
+        </div>
+        <div class="qa">
+          <h3><span class="qn">02</span>Is Synapse Bridge non-custodial?</h3>
+          <p>Yes. You keep the private keys, approvals and transaction signatures in your wallet. The app gives you a bridge route, but it does not create a custodial account for your funds.</p>
+        </div>
+        <div class="qa">
+          <h3><span class="qn">03</span>Which chains and assets can I bridge?</h3>
+          <p>Available routes depend on live app support. Ethereum, L2 ecosystems and EVM networks are typical bridge destinations; see the <a href="supported-chains/">supported chains</a> page before planning a transfer.</p>
+        </div>
+        <div class="qa">
+          <h3><span class="qn">04</span>How long does a bridge transfer take?</h3>
+          <p>Time depends on the selected networks, confirmation conditions and route. Synapse Bridge shows the current estimate in the app before you sign.</p>
+        </div>
+        <div class="qa">
+          <h3><span class="qn">05</span>What does Synapse Bridge cost?</h3>
+          <p>The final cost depends on the route and on-chain fees such as <a class="cite" href="https://etherscan.io/gastracker" rel="nofollow noopener noreferrer">Ethereum gas</a>. Review the live quote and wallet prompt before confirming.</p>
+        </div>
+        <div class="qa">
+          <h3><span class="qn">06</span>How should I think about safety?</h3>
+          <p>Use the app from the correct URL, inspect the wallet request, avoid blind approvals and understand bridge risk. Independent dashboards such as <a class="cite" href="https://l2beat.com/scaling/summary" rel="nofollow noopener noreferrer">L2Beat network research</a> can help you compare chain assumptions.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap sec" id="explore">
+      <div class="sec-head">
+        <span class="eyebrow"><span class="dot"></span>Learn more</span>
+        <h2 class="h2">Explore Synapse Bridge</h2>
+      </div>
+      <div class="explore">
+        <a class="ex" href="how-it-works/">
+          <span class="et">How it works <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+          <p>Walk through wallet connection, route selection and final transaction review.</p>
+        </a>
+        <a class="ex" href="security/">
+          <span class="et">Security <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+          <p>Review self-custody basics, wallet checks and safer bridge habits.</p>
+        </a>
+        <a class="ex" href="supported-chains/">
+          <span class="et">Supported chains <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+          <p>See the chain coverage page before choosing where to send assets.</p>
+        </a>
+      </div>
     </section>
   </main>
 
-  <footer class="footer">Synapse Bridge &mdash; 2026</footer>
+  <footer class="footer">
+    <div class="wrap">
+      
+      <p style="margin-top:6px"><b>Synapse Bridge</b></p>
+    </div>
+  </footer>
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@graph":[
+    {"@type":"WebSite","@id":"https://synapse-bridge-site.github.io/#website","url":"https://synapse-bridge-site.github.io/","name":"Synapse Bridge","publisher":{"@id":"https://synapse-bridge-site.github.io/#org"}},
+    {"@type":"Organization","@id":"https://synapse-bridge-site.github.io/#org","name":"Synapse Bridge","url":"https://synapse-bridge-site.github.io/","logo":"https://synapse-bridge-site.github.io/favicon.png"},
+    {"@type":"WebApplication","@id":"https://synapse-bridge-site.github.io/#app","name":"Synapse Bridge","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://synapse-bridge-site.github.io/dashboard/","browserRequirements":"Requires a Web3 wallet","description":"Non-custodial DeFi bridge and swap app for moving supported assets across chains from a wallet-native interface."},
+    {"@type":"FAQPage","@id":"https://synapse-bridge-site.github.io/#faq","mainEntity":[
+      {"@type":"Question","name":"What is Synapse Bridge?","acceptedAnswer":{"@type":"Answer","text":"Synapse Bridge is a non-custodial DeFi bridge and swap app for moving supported assets across chains. You connect a wallet, choose a route and sign the transfer yourself."}},
+      {"@type":"Question","name":"Is Synapse Bridge non-custodial?","acceptedAnswer":{"@type":"Answer","text":"Yes. You keep the private keys, approvals and transaction signatures in your wallet. The app gives you a bridge route, but it does not create a custodial account for your funds."}},
+      {"@type":"Question","name":"Which chains and assets can I bridge?","acceptedAnswer":{"@type":"Answer","text":"Available routes depend on live app support. Ethereum, L2 ecosystems and EVM networks are typical bridge destinations; see the supported chains page before planning a transfer."}},
+      {"@type":"Question","name":"How long does a bridge transfer take?","acceptedAnswer":{"@type":"Answer","text":"Time depends on the selected networks, confirmation conditions and route. Synapse Bridge shows the current estimate in the app before you sign."}},
+      {"@type":"Question","name":"What does Synapse Bridge cost?","acceptedAnswer":{"@type":"Answer","text":"The final cost depends on the route and on-chain fees such as Ethereum gas. Review the live quote and wallet prompt before confirming."}},
+      {"@type":"Question","name":"How should I think about safety?","acceptedAnswer":{"@type":"Answer","text":"Use the app from the correct URL, inspect the wallet request, avoid blind approvals and understand bridge risk. Independent chain research can help you compare network assumptions."}}
+    ]}
+  ]}
+  </script>
 
   <script>
-  (function () {
+  (function(){
     "use strict";
-    var button = document.querySelector("[data-switch]");
-    if (!button) return;
-
-    button.addEventListener("click", function () {
-      var chips = document.querySelectorAll(".leg .chip");
-      if (chips.length < 2) return;
-
-      var first = chips[0].innerHTML;
-      chips[0].innerHTML = chips[1].innerHTML;
-      chips[1].innerHTML = first;
+    var b=document.querySelector("[data-switch]");
+    if(!b) return;
+    b.addEventListener("click",function(){
+      var t=document.querySelectorAll(".route .tok");
+      if(t.length<2) return;
+      var h=t[0].innerHTML; t[0].innerHTML=t[1].innerHTML; t[1].innerHTML=h;
     });
   }());
   </script>

@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-
 Sitemap: https://synapse-bridge-site.github.io/sitemap.xml
