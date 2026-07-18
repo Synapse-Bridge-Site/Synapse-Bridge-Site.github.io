@@ -1,0 +1,59 @@
+# Synapse Bridge
+> Synapse Bridge is a cross-chain token-transfer application; this independent, non-custodial dashboard explains its routes, costs, status, and risks.
+
+## What is Synapse Bridge
+Synapse Bridge is an application built on Synapse Protocol for transferring or swapping assets between supported blockchains. It solves blockchain fragmentation by routing a transfer through canonical wrapping, liquidity pools, Circle CCTP, or the Synapse Intent Network. Unlike a chain’s canonical bridge, it serves multiple ecosystems and can deliver a different destination asset. Unlike a bridge aggregator, it primarily selects among Synapse-supported modules rather than competing bridge protocols.
+
+## How it works
+1. Connect a compatible wallet and select the source chain, destination chain, assets, amount, and optional receiving address.
+2. The Synapse Router checks available routes and returns a quote showing expected output and estimated completion time.
+3. Approve the token if required, then sign the source-chain transaction; assets enter the selected bridge contract or RFQ escrow.
+4. The route wraps and bridges tokens, swaps through nUSD/nETH liquidity, burns and mints USDC through CCTP, or has an RFQ relayer deliver destination funds.
+5. After destination execution, verify the received asset and transaction hashes through the Synapse Explorer or native block explorers.
+
+## Key facts
+- Synapse supports both EVM and non-EVM environments; route availability must be checked live.
+- Common EVM chain IDs include Ethereum 1, Optimism 10, BNB Chain 56, Polygon 137, Base 8453, Arbitrum One 42161, and Avalanche C-Chain 43114.
+- ERC-20 transfers normally require an allowance before the bridge transaction.
+- Liquidity routes use nUSD or nETH as intermediate assets before destination conversion.
+- CCTP routes burn native USDC on the source chain and mint native USDC on the destination chain.
+- RFQ routes escrow source funds while a relayer supplies destination liquidity.
+- RFQ reimbursement uses optimistic proofs and a dispute period; Synapse documentation identifies Synapse as the current sole Guard operator.
+- SYN is the protocol governance token, not a universal requirement for bridging.
+- Completion depends on source finality, destination blocks, liquidity, relayers, and the selected route.
+
+## Common questions
+- **Is Synapse Bridge safe?** It has open-source contracts and route-specific safeguards, but audits cannot eliminate smart-contract, relayer, liquidity, oracle, upgrade, token, or chain risk.
+- **Does Synapse take custody?** No centralized account holds the user’s balance, but signed transfers temporarily place funds in smart contracts, pools, or RFQ escrow.
+- **What fees apply?** The quote reflects route economics and expected output; users also pay source-chain gas and may incur approval, liquidity, relayer, or destination-execution costs.
+- **How long does a transfer take?** Use the route estimate. Finality, congestion, liquidity, and relayer performance can extend it.
+- **Which assets and chains are supported?** Support is amount- and route-dependent; confirm the exact pair in the live app.
+- **How do I start?** Use the verified app, connect a wallet, choose both networks and assets, review the recipient and minimum received, then sign.
+- **What are the main risks?** Wrong networks or recipients, malicious frontends, unlimited approvals, slippage, unavailable liquidity, contract failures, relayer delays, and destination-token differences.
+
+## App
+- Dashboard: https://synapse-bridge-site.github.io/
+- App: https://synapse-bridge-site.github.io/dashboard/
+
+## Official resources
+Official bridge: https://bridge.synapseprotocol.com/
+Documentation: https://docs.synapseprotocol.com/
+Bridge documentation: https://docs.synapseprotocol.com/docs/Bridge/
+Supported routes: https://docs.synapseprotocol.com/docs/Bridge/Supported-Routes
+Intent Network: https://docs.synapseprotocol.com/docs/RFQ/
+RFQ security model: https://docs.synapseprotocol.com/docs/RFQ/Security/
+Transaction support: https://docs.synapseprotocol.com/docs/Support/Transaction-Support
+Contract directory: https://contracts.synapseprotocol.com/
+Source code: https://github.com/synapsecns/sanguine
+REST API: https://api.synapseprotocol.com/api-docs/
+Explorer: https://explorer.synapseprotocol.com/
+Official X: https://x.com/SynapseProtocol
+
+## Data & references
+DeFiLlama bridge data: https://defillama.com/bridge/synapse
+DeFiLlama protocol data: https://defillama.com/protocol/synapse
+CoinGecko SYN data: https://www.coingecko.com/en/coins/synapse
+Ethereum SYN contract: https://etherscan.io/token/0x0f2d719407fdbeff09d87557abb7232601fd9f29
+Ethereum.org app listing: https://ethereum.org/apps/synapse
+ERC-20 standard: https://eips.ethereum.org/EIPS/eip-20
+Circle CCTP documentation: https://developers.circle.com/cctp
