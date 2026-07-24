@@ -1,31 +1,63 @@
 # Synapse Bridge
+> An independent informational dashboard for Synapse Protocol’s non-custodial, cross-chain asset-transfer system.
 
-> Synapse Bridge moves and swaps tokens between supported blockchains through pooled liquidity, CCTP, or intent-based routes.
+## What is Synapse Bridge
+Synapse Bridge transfers supported crypto assets between blockchains through user-authorized smart-contract transactions. It solves liquidity fragmentation by routing transfers through Synapse liquidity pools, request-for-quote (RFQ) solvers, or Circle CCTP, depending on the asset and route. Unlike a canonical rollup bridge, Synapse connects multiple ecosystems; unlike a general bridge aggregator, its router primarily selects among Synapse-supported mechanisms. The dashboard is informational and is not the official Synapse app.
+
+## How it works
+1. The user selects an origin chain, destination chain, asset, amount, and recipient, then requests a route quote.
+2. The router evaluates available mechanisms and returns the expected output, fees, minimum received, and estimated completion time.
+3. After any ERC-20 approval, the user signs the origin-chain transaction from a self-custodied wallet.
+4. Depending on the route, liquidity pools exchange cross-chain assets, an RFQ solver fills the destination transfer and later claims the origin funds, or CCTP burns native USDC and mints it on the destination chain.
+5. The destination transaction is finalized on-chain and can be tracked through Synapse Explorer and the chains’ native explorers.
 
 ## Key facts
-- Route: source chain  destination chain
-- Deposit: typically minutes
-- Withdraw: may need proving/finalization
-- Gas: native asset on both chains
-- Custody: Non-custodial — your wallet signs
-- Verify: Use the official contracts; beware fake bridge sites
+- Synapse Bridge is non-custodial: users connect their own wallets and authorize transactions; the interface does not maintain user accounts or hosted balances.
+- Route availability depends on the exact origin chain, destination chain, token, amount, liquidity, and active solvers.
+- Common EVM network IDs include Ethereum 1, Optimism 10, BNB Chain 56, Arbitrum One 42161, Base 8453, Linea 59144, Scroll 534352, and Blast 81457.
+- ERC-20 transfers may require a separate approval transaction before bridging.
+- Liquidity routes use cross-chain assets such as nUSD and nETH plus destination-chain liquidity pools.
+- RFQ routes use competing solver quotes, on-chain requests, proofs, guards, a dispute period, and a permissionless refund path.
+- CCTP routes transfer native USDC through Circle’s burn, attestation, and mint process.
+- Fees may include source-chain gas, protocol or solver charges, swap impact, and destination execution costs.
+- Completion time is route- and chain-dependent; the live quote and block explorers are authoritative.
 
-## On this page
-- [What is Synapse Bridge?](https://synapse-bridge-site.github.io/#what)
-- [How bridging works](https://synapse-bridge-site.github.io/#how)
-- [Depositing to the destination](https://synapse-bridge-site.github.io/#deposit)
-- [Withdrawing back](https://synapse-bridge-site.github.io/#withdraw)
-- [Time and fees](https://synapse-bridge-site.github.io/#fees)
-- [Is Synapse Bridge safe?](https://synapse-bridge-site.github.io/#safety)
-- [Problems and fixes](https://synapse-bridge-site.github.io/#troubleshoot)
-- [FAQ](https://synapse-bridge-site.github.io/#faq)
+## Common questions
+**Is Synapse Bridge safe?** It reduces custodial account risk but retains smart-contract, solver, liquidity, token, chain-finality, wallet, and interface risks. Verify the official domain, route details, recipient, token contract, and approval before signing.
+
+**Who controls my funds?** Your wallet controls them until you authorize a transaction. After submission, the selected smart contracts and route mechanism govern settlement or refund.
+
+**How long does bridging take?** There is no universal duration. Confirmation times, congestion, CCTP attestation, solver fulfillment, and destination finality determine completion.
+
+**What fees will I pay?** Review the live quote for gas, route fees, price impact, and expected destination amount; these vary by route.
+
+**Which assets and chains are supported?** Use the official app or API token list because support is route-specific and changes over time.
+
+**How do I start?** Open the official app, connect a compatible wallet, select both chains and the asset, review the quote, approve if required, and sign.
 
 ## App
-- [Synapse Bridge dashboard](https://synapse-bridge-site.github.io/)
-- [Open the app](https://synapse-bridge-site.github.io/dashboard/)
+- Dashboard: https://synapse-bridge-site.github.io/
+- App: https://bridge.synapseprotocol.com/
 
-## Sources
-- [bridge.synapseprotocol.com](https://bridge.synapseprotocol.com/landing)
-- [docs.synapseprotocol.com](https://docs.synapseprotocol.com/)
-- [defillama.com](https://defillama.com/protocol/synapse)
-- [coinmarketcap.com](https://coinmarketcap.com/currencies/synapse-2/)
+## Official resources
+Official website and app: https://bridge.synapseprotocol.com/
+Documentation: https://docs.synapseprotocol.com/
+Transaction Support FAQ: https://docs.synapseprotocol.com/synapse-bridge/synapse-bridge/transaction-support-faq
+Synapse RFQ documentation: https://docs.synapseprotocol.com/synapse-bridge/synapse-rfq
+RFQ contracts and transaction flow: https://docs.synapseprotocol.com/synapse-bridge/synapse-rfq/contracts
+Bridge liquidity documentation: https://docs.synapseprotocol.com/synapse-bridge/amm
+Synapse Explorer: https://explorer.synapseprotocol.com/
+REST API documentation: https://api.synapseprotocol.com/api-docs/
+Contract reference: https://contracts.synapseprotocol.com/bridge
+Source code: https://github.com/synapsecns/sanguine
+GitHub organization: https://github.com/synapsecns
+Official X: https://twitter.com/SynapseProtocol
+
+## Data & references
+DefiLlama bridge data: https://defillama.com/bridge/synapse
+CoinGecko SYN reference: https://www.coingecko.com/en/coins/synapse
+Circle CCTP technical guide: https://developers.circle.com/cctp/references/technical-guide
+EIP-155 chain-ID standard: https://eips.ethereum.org/EIPS/eip-155
+Ethereum explorer: https://etherscan.io/
+Arbitrum explorer: https://arbiscan.io/
+Base explorer: https://basescan.org/
